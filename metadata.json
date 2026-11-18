@@ -1,0 +1,6 @@
+{
+  "name": "Rhythm",
+  "description": "A complete productivity and daily timeline app with color-coded activity scheduling, reusable templates, focus timer, notifications, interactive statistics, performance scoring, leaderboard, and theme customization.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

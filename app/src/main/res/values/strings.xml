@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Rhythm</string>
+    <string name="widget_name">Rhythm Schedule</string>
+    <string name="widget_description">Shows today\'s progress, active block, and upcoming activities.</string>
+    <string name="channel_schedule_name">Activity Reminders</string>
+    <string name="channel_schedule_desc">Alerts before activities start, on start, and when overdue.</string>
+    <string name="channel_focus_name">Focus Timer</string>
+    <string name="channel_focus_desc">Notifications when a focus session finishes.</string>
+    <string name="channel_review_name">Daily Review</string>
+    <string name="channel_review_desc">Daily productivity recap reminder.</string>
+    <string name="ai_coach_title">Rhythm AI Coach</string>
+    <string name="ai_firebase_notice">AI features require Firebase. Sample mode is active with clearly labeled placeholder responses.</string>
+    <string name="places_map_title">Places &amp; Focus Map</string>
+    <string name="maps_key_notice">Configure MAPS_API_KEY in the AI Studio Secrets panel to enable interactive Google Maps tiles.</string>
+    <string name="biometric_lock_title">Rhythm Locked</string>
+    <string name="biometric_lock_subtitle">Authenticate with fingerprint, face, or device credentials to access your notes and schedule.</string>
+    <string name="biometric_unlock_button">Unlock with Biometrics</string>
+</resources>
