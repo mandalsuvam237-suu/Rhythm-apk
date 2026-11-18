@@ -20,6 +20,8 @@ import androidx.test.core.app.ApplicationProvider
 import com.example.data.local.PreferencesStore
 import com.example.data.local.SecurityPreferences
 import com.example.domain.DateTimeUtils
+import com.example.security.BiometricAuthHelper
+import com.example.security.BiometricCapability
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withTimeoutOrNull
@@ -41,11 +43,13 @@ class ExampleRobolectricTest {
 
     @Before
     fun resetSecurityBefore() {
+        BiometricAuthHelper.testCapabilityOverride = BiometricCapability.NONE_ENROLLED
         resetSecurityPrefs()
     }
 
     @After
     fun resetSecurityAfter() {
+        BiometricAuthHelper.testCapabilityOverride = null
         resetSecurityPrefs()
     }
 
@@ -176,9 +180,11 @@ class ExampleRobolectricTest {
     fun sensitiveCategoryNote_isMaskedUntilUnlocked_andStartupLockWorksWithBackupPasscode() {
         composeRule.waitForIdle()
 
-        // Move to Tomorrow for a clean timeline free of overlap with prior test entries
-        composeRule.onNodeWithTag("next_day_btn").performClick()
-        composeRule.waitForIdle()
+        // Move 3 days ahead for a clean timeline free of overlap with prior test entries
+        repeat(3) {
+            composeRule.onNodeWithTag("next_day_btn").performClick()
+            composeRule.waitForIdle()
+        }
 
         // 1. Add a sensitive activity under "Personal Work" (cat_personal, protected by default)
         composeRule.onNodeWithTag("quick_add_activity_fab").performClick()
@@ -259,7 +265,7 @@ class ExampleRobolectricTest {
         composeRule.onNodeWithTag("nav_today").performClick()
         composeRule.waitForIdle()
         composeRule.onNodeWithTag("daily_timeline_lazy_column")
-            .performScrollToNode(hasTestTag("upcoming_unlock_btn"))
+            .performScrollToNode(hasTestTag("smart_suggestions_entry_btn"))
         composeRule.onNodeWithTag("upcoming_unlock_btn")
             .assertIsDisplayed()
             .performClick()

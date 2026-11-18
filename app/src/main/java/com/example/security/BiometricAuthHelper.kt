@@ -5,6 +5,7 @@ import android.content.ContextWrapper
 import android.content.Intent
 import android.os.Build
 import android.provider.Settings
+import androidx.annotation.VisibleForTesting
 import androidx.biometric.BiometricManager
 import androidx.biometric.BiometricManager.Authenticators.BIOMETRIC_STRONG
 import androidx.biometric.BiometricManager.Authenticators.BIOMETRIC_WEAK
@@ -42,7 +43,11 @@ object BiometricAuthHelper {
     private const val DEVICE_OR_BIOMETRIC_AUTHENTICATORS =
         BIOMETRIC_STRONG or BIOMETRIC_WEAK or DEVICE_CREDENTIAL
 
+    @VisibleForTesting
+    internal var testCapabilityOverride: BiometricCapability? = null
+
     fun checkCapability(context: Context): BiometricCapability {
+        testCapabilityOverride?.let { return it }
         val manager = BiometricManager.from(context)
         return when (manager.canAuthenticate(DEVICE_OR_BIOMETRIC_AUTHENTICATORS)) {
             BiometricManager.BIOMETRIC_SUCCESS -> BiometricCapability.READY

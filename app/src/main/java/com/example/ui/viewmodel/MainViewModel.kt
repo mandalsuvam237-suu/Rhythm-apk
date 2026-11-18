@@ -773,6 +773,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
                 )
                 _smartPlan.value = plan
                 _selectedSuggestionIds.value = plan.suggestions.map { it.id }.toSet()
+                _smartPlanLoading.value = false
 
                 val summaryPrompt = buildString {
                     append("Summarize how this ${plan.suggestions.size}-block upcoming schedule ")
